@@ -17,7 +17,7 @@ An end-to-end data engineering project that builds an analytics-ready data wareh
 
 ## Architecture
 
-![[architecture.png]]
+![Architecture](image/architecture.png)
 
 ### Medallion Architecture
 
@@ -27,7 +27,7 @@ An end-to-end data engineering project that builds an analytics-ready data wareh
 | **Silver** | Cleaned, typed, deduplicated, and standardized tables | Table |
 | **Gold** | Analytics-ready Star Schema (Facts + Dimensions) | Table |
 
-![[medalion architecture .png]]
+![Medallion Architecture](image/medalion%20architecture%20.png)
 ---
 ## Project Structure
 
@@ -108,7 +108,7 @@ psycopg2-binary      sqlalchemy
 ---
 
 ## Data Model
-![[data model.png]]
+![Data Model](image/data%20model.png)
 
 ### Key Metrics
 
@@ -193,8 +193,8 @@ Appends a single new Excel file (passed via DAG config), then runs dbt increment
 ---
 
 ## Power BI Dashboard
-![[dashboard1.png]]
-![[dashboard2.png]]
+![Dashboard 1](image/dashboard1.png)
+![Dashboard 2](image/dashboard2.png)
 Summary:
 
 | Metric                | Value                          |
