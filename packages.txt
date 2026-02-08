@@ -1,0 +1,4 @@
+# System packages for Astro Airflow
+libpq-dev
+gcc
+python3-dev

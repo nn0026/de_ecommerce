@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  # ============================================
+  # SILVER LAYER - Cleaned & validated data
+  # ============================================
+  - name: slv_orders
+    description: "Silver layer - Cleaned and validated ORDER LINE ITEMS (1 order can have multiple products)"
+    columns:
+      - name: order_id
+        description: "Order identifier (not unique - one order can have multiple line items)"
+        tests:
+          - not_null
+      - name: order_date
+        tests:
+          - not_null
+      - name: order_total_vnd
+        tests:
+          - not_null
+          
+  - name: slv_customers
+    description: "Silver layer - Cleaned customer data with region classification"
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+      - name: buyer_username
+        tests:
+          - not_null
+          
+  - name: slv_products
+    description: "Silver layer - Standardized product data with category extraction"
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+          
+  - name: slv_dates
+    description: "Silver layer - Enriched calendar with Shopee sale events"
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - unique

@@ -1,0 +1,71 @@
+name: 'ecommerce_dbt'
+version: '1.0.0'
+config-version: 2
+
+# Profile configuration 
+profile: 'ecommerce_profile'
+
+# Project paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Build configuration
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  ecommerce_dbt:
+    bronze:
+      +materialized: view
+      +schema: bronze
+      +tags: ['bronze', 'raw']
+    
+    silver:
+      +materialized: table
+      +schema: silver
+      +tags: ['silver', 'cleaned']
+    
+    gold:
+      +materialized: table
+      +schema: gold
+      +tags: ['gold', 'analytics']
+      
+      dimensions:
+        +materialized: table
+        +tags: ['gold', 'dimension']
+        
+      facts:
+        +materialized: table
+        +tags: ['gold', 'fact']
+        
+      aggregates:
+        +materialized: table
+        +tags: ['gold', 'aggregate']
+    
+    staging:
+      +materialized: view
+      +schema: staging
+      +tags: ['legacy']
+      +enabled: false
+    
+    marts:
+      +materialized: table
+      +schema: analytics
+      +tags: ['legacy']
+      +enabled: false
+
+vars:
+  # Date range for analysis
+  start_date: '2022-01-01'
+  end_date: '2022-12-31'
+  
+  # Shopee platform
+  platform: 'shopee'
+  currency: 'VND'
+  country: 'VN'

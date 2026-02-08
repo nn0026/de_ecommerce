@@ -1,0 +1,13 @@
+.astro
+.git
+.env
+*.pyc
+__pycache__
+.pytest_cache
+.venv
+venv
+*.egg-info
+.DS_Store
+logs/
+airflow_settings.yaml
+.vscode

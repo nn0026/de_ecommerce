@@ -1,0 +1,18 @@
+# Astro project configuration
+project:
+  name: de_ecommerce
+
+# Airflow webserver port
+webserver:
+  port: 8080
+
+# Postgres configuration
+postgres:
+  port: 5434
+
+# Additional Docker compose services
+local:
+  # Expose additional ports for MinIO
+  ports:
+    - "9000:9000"   # MinIO API
+    - "9001:9001"   # MinIO Console

@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  # ============================================
+  # GOLD LAYER - DIMENSIONS
+  # ============================================
+  - name: dim_customer
+    description: "Gold layer - Customer dimension with RFM segmentation"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - not_null
+          - unique
+      - name: buyer_username
+        tests:
+          - not_null
+      - name: customer_segment
+        description: "RFM-based customer segment (Champions, Loyal, At Risk, etc.)"
+      - name: customer_lifecycle
+        description: "Customer lifecycle stage (New, Returning, Regular, VIP)"
+      - name: customer_value_tier
+        description: "Value tier based on total spending (Platinum, Gold, Silver, Bronze)"
+          
+  - name: dim_product
+    description: "Gold layer - Product dimension with performance metrics"
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_tier
+        description: "Product tier based on revenue (Star, High Performer, etc.)"
+      - name: sales_velocity
+        description: "Sales velocity category (Fast, Medium, Slow Moving)"
+          
+  - name: dim_date
+    description: "Gold layer - Date dimension with Shopee sale events"
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - unique
+      - name: is_double_day_sale
+        description: "Flag for Shopee double-day sales (11.11, 12.12, etc.)"
+      - name: sale_event_name
+        description: "Name of sale event if applicable"
+          
+  - name: dim_shipping
+    description: "Gold layer - Shipping carrier dimension"
+    columns:
+      - name: shipping_id
+        tests:
+          - not_null
+          - unique
+      - name: carrier_group
+        description: "Normalized carrier group (GHN, GHTK, J&T, Shopee Express, etc.)"
+          
+  - name: dim_payment
+    description: "Gold layer - Payment method dimension"
+    columns:
+      - name: payment_method_id
+        tests:
+          - not_null
+          - unique
+      - name: payment_group
+        description: "Payment group (COD, E-Wallet, Card, Bank)"

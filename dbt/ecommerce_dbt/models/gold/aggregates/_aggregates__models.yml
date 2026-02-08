@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  # ============================================
+  # GOLD LAYER - AGGREGATES
+  # ============================================
+  - name: agg_daily_sales
+    description: "Gold layer - Daily sales metrics aggregate"
+    columns:
+      - name: order_date
+        description: "Date of sales"
+        tests:
+          - not_null
+          - unique
+      - name: total_orders
+        description: "Total number of orders"
+      - name: gross_revenue
+        description: "Total gross revenue"
+      - name: net_revenue
+        description: "Total net revenue after fees"
+      - name: unique_customers
+        description: "Number of unique customers"
+      - name: completion_rate_pct
+        description: "Order completion rate percentage"
+        
+  - name: agg_customer_summary
+    description: "Gold layer - Customer-level aggregated metrics with RFM"
+    columns:
+      - name: buyer_username
+        description: "Customer username"
+        tests:
+          - not_null
+          - unique
+      - name: total_orders
+        description: "Lifetime total orders"
+      - name: total_spent
+        description: "Lifetime total spending"
+      - name: customer_segment
+        description: "RFM segment"
+      - name: customer_lifecycle
+        description: "Lifecycle stage"
+      - name: rfm_score
+        description: "Combined RFM score (R*100 + F*10 + M)"
+        
+  - name: agg_product_performance
+    description: "Gold layer - Product-level performance metrics"
+    columns:
+      - name: product_name
+        description: "Product name"
+        tests:
+          - not_null
+          - unique
+      - name: total_quantity_sold
+        description: "Total units sold"
+      - name: total_revenue
+        description: "Total revenue generated"
+      - name: product_tier
+        description: "Product performance tier"
+      - name: sales_velocity_category
+        description: "Sales velocity classification"

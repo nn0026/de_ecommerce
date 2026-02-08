@@ -1,0 +1,12 @@
+ecommerce_profile:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      port: 5432
+      user: postgres
+      password: postgres
+      dbname: postgres
+      schema: public
+      threads: 4

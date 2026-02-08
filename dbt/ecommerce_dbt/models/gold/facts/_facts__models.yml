@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  # ============================================
+  # GOLD LAYER - FACTS
+  # ============================================
+  - name: fct_orders
+    description: "Gold layer - Main fact table with all order measures and dimension keys"
+    columns:
+      - name: order_id
+        description: "Primary key - unique order identifier"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Foreign key to dim_customer"
+      - name: product_id
+        description: "Foreign key to dim_product"
+      - name: order_date_key
+        description: "Foreign key to dim_date"
+      - name: shipping_id
+        description: "Foreign key to dim_shipping"
+      - name: payment_method_id
+        description: "Foreign key to dim_payment"
+      - name: order_total_vnd
+        description: "Total order value in VND"
+        tests:
+          - not_null
+      - name: net_revenue
+        description: "Net revenue after fees"
+      - name: quantity
+        description: "Number of items ordered"
+      - name: delivery_days
+        description: "Days from order to delivery"
+      - name: new_vs_repeat
+        description: "Whether customer is new or repeat for this order"
+      - name: order_value_tier
+        description: "Order value tier (Premium, High, Medium, Low, Micro)"
+      - name: is_completed
+        description: "Flag if order is completed"
+      - name: is_returned
+        description: "Flag if order was returned"
+      - name: is_cancelled
+        description: "Flag if order was cancelled"

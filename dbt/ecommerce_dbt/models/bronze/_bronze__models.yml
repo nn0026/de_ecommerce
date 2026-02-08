@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: brz_raw_orders
+    description: |
+      Bronze layer - Raw orders from Shopee seller center
+      1:1 copy with metadata columns added
+      Source: raw.raw_orders (loaded from MinIO Data Lake)
+    columns:
+      - name: order_id
+        description: Unique order identifier
+        tests:
+          - not_null
+      - name: order_date
+        description: Order creation timestamp
+      - name: buyer_username
+        description: Buyer's Shopee username
+      - name: product_name
+        description: Product name
+      - name: order_total_vnd
+        description: Total order value in VND
+      - name: _source_system
+        description: Bronze layer metadata - source system
+      - name: _bronze_loaded_at
+        description: Bronze layer metadata - load timestamp
